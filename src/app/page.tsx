@@ -1,30 +1,18 @@
-'use client'
-
+import { MovieCard } from '@/components/movieCard';
+import { SlideMovie } from '@/components/slideMovie';
 import { Inter } from 'next/font/google'
-import Link from 'next/link';
-import { useEffect, useState } from 'react'
-
+import { responseTopRated } from '../interfaces/top_rated_interface';
 const inter = Inter({ subsets: ['latin'] })
 
+export const metadata = {
+  title: 'Home'
+}
 
-export default function Home() {
-  const [numberIncrement, setNumberIncrement] = useState(0);
-  const handleClickButton = ()=>{
-    setNumberIncrement( prev => prev + 1);
-  }
-  useEffect(()=>{
-    setNumberIncrement(0)
-  }, [])
-  
+export default async function Home() {
   return (
     <main>
-      <h1>{numberIncrement}</h1>
-      <button onClick={handleClickButton}>
-        Adicionar
-      </button>
-      <Link href="/home">
-        Home
-      </Link>
+      {/* @ts-expect-error*/}
+      <SlideMovie />
     </main>
   )
 }
