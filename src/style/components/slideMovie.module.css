@@ -15,6 +15,7 @@
     scroll-padding-right: 40px;
     scroll-padding-left: 41px;
     padding-inline: 40px;
+    scroll-behavior: smooth;
 }
 
 
