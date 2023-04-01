@@ -1,10 +1,12 @@
 import Image from "next/image";
 import { movie } from "../interfaces/movie_interface";
-import '../style/components/slideMovie.css';
+import style from "../style/components/cardSlide.module.css";
+
 export function MovieCard({backdrop_path, title}: movie){
+    
     return(
-        <div className="card">
-            <img src={process.env.IMG_URL + backdrop_path} alt={title}/>
+        <div className={style.card}>
+            <Image src={process.env.IMG_URL + backdrop_path} alt={title} fill/>
         </div>
     )
 }

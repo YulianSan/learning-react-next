@@ -1,0 +1,53 @@
+.conteinerSlide{
+    position: relative;
+}
+
+.slide{
+    --p: 5;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+
+    scrollbar-width: 0px;
+    box-sizing: border-box;
+    scroll-padding-right: 40px;
+    scroll-padding-left: 41px;
+    padding-inline: 40px;
+}
+
+
+.slide::-webkit-scrollbar{
+    display: none;
+}
+
+.slide > *{
+    flex: none;
+    scroll-snap-align: start;
+    /* 2px pq o margin-inline conta como se fosse right e left */
+    width: calc(100%/var(--p) - 2px);
+    margin-inline: 1px;
+    aspect-ratio: 3/2;
+}
+
+.btn_prev, .btn_next{
+    width: 40px;
+    height: 100%;
+    background: url(/icone-slide.png) center no-repeat;
+    background-size: 50%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0px;
+    z-index: 1000;
+    border: none;
+    cursor: pointer;
+}
+
+.btn_prev{
+    left: 0px;
+}
+.btn_next{
+    right: 0px;
+    transform: rotate(180deg);
+}
