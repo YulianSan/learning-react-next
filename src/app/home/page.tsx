@@ -6,6 +6,7 @@ export const metadata = {
 
   
 export default async function Home(){
+    
     const data = await getMe();
     return (
         <>
