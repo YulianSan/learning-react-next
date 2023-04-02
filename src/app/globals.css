@@ -8,3 +8,7 @@ main{
     max-width: 1600px;
     margin: 0px auto;
 }
+body {
+    background: #111212;
+    color:white;
+}

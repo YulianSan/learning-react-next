@@ -5,6 +5,7 @@
 .slide{
     /* número de slides */
     --p: 8;
+    padding-block: 2rem;
     width: 100%;
     margin: 0 auto;
     display: flex;
@@ -16,6 +17,7 @@
     scroll-padding-right: 40px;
     scroll-padding-left: 41px;
     padding-inline: 40px;
+    
     scroll-behavior: smooth;
 }
 
@@ -35,12 +37,13 @@
 
 .btn_prev, .btn_next{
     width: 40px;
-    height: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    height: calc(100% - 4rem);
     background: url(/icone-slide.png) center no-repeat;
     background-size: 50%;
     background-color: rgba(0, 0, 0, 0.8);
     position: absolute;
-    top: 0px;
     z-index: 1000;
     border: none;
     cursor: pointer;
@@ -51,7 +54,7 @@
 }
 .btn_next{
     right: 0px;
-    transform: rotate(180deg);
+    transform: translateY(-50%) rotate(180deg);
 }
 
 @media screen and (max-width: 1400px){

@@ -4,10 +4,12 @@ import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import style from '../style/components/slideMovie.module.css';
 import { MovieCard } from "./movieCard";
 import Loading from "../app/loading";
+import { movie } from "@/interfaces/movie_interface";
 
 
 export function ConteinerSlide(){
     const [data, setData] = useState<responseTopRated | undefined>();
+    const [movieFocus, setMovieFocus] = useState<movie | null>();
     const slides = useRef<HTMLDivElement>(null);
 
     const getData = useCallback(async ()=>{
@@ -34,17 +36,24 @@ export function ConteinerSlide(){
         
         slides.current?.scrollBy(d * widthSlide * slideByConteiner, 0)
     }
+
+    const handleMovieFocus = (value: movie)=> {
+        setMovieFocus(value);
+    }
     return (
         <>
-        { data?.results ? <div className={style.conteinerSlide}>
-            <button className={style.btn_prev} onClick={()=>handleMoveSlide(-1)}></button>
-            <button className={style.btn_next} onClick={()=>handleMoveSlide(1)}></button>
-            <div className={style.slide} ref={slides}>
-                {data?.results.map( movie =>{
-                    return ( <MovieCard {...movie} key={movie.id}/> )
-                })}
-            </div>
-        </div> : <Loading/>}
+        { data?.results ? <>
+                <div className={style.conteinerSlide}>
+                    <button className={style.btn_prev} onClick={()=>handleMoveSlide(-1)}></button>
+                    <button className={style.btn_next} onClick={()=>handleMoveSlide(1)}></button>
+                    <div className={style.slide} ref={slides}>
+                        {data?.results.map( movie =>{
+                            return ( <MovieCard movie={movie} key={movie.id} setMovieFocus={handleMovieFocus}/> )
+                        })}
+                    </div>
+                </div>
+                {movieFocus ? <div>{JSON.stringify(movieFocus)}</div> : 'nd'}
+            </>: <Loading/>}
         </>
     )
 }

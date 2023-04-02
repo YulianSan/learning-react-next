@@ -1,8 +1,29 @@
 .card{
     position: relative;
     cursor: pointer;
+    box-sizing: border-box;
+    outline: none;
 }
 
 .card > img{
     object-fit: cover;
+}
+
+.card:focus > img{
+    --border: 4px;
+    outline: var(--border) solid white;
+    outline-offset: calc(var(--border) * -1);
+}
+
+.card:focus::after{
+    content: "";
+    display: block;
+    width: 0;
+    aspect-ratio: 1;
+    border: 10px solid transparent;
+    border-top-color: white;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, 100%);
 }
