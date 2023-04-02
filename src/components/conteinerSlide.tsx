@@ -1,8 +1,9 @@
 'use client'
 import { responseTopRated } from "@/interfaces/top_rated_interface";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { Suspense, useCallback, useEffect, useRef, useState } from "react";
 import style from '../style/components/slideMovie.module.css';
 import { MovieCard } from "./movieCard";
+import Loading from "../app/loading";
 
 
 export function ConteinerSlide(){
@@ -10,7 +11,6 @@ export function ConteinerSlide(){
     const slides = useRef<HTMLDivElement>(null);
 
     const getData = useCallback(async ()=>{
-        console.log(process.env)
         const response = await fetch(`${process.env.API_URL}top_rated?api_key=${process.env.TOKEN}`);
         const data = await response.json() as responseTopRated;
 
@@ -30,7 +30,8 @@ export function ConteinerSlide(){
         slides.current?.scrollBy(d * widthSlide, 0)
     }
     return (
-        <div className={style.conteinerSlide}>
+        <>
+        { data?.results ? <div className={style.conteinerSlide}>
             <button className={style.btn_prev} onClick={()=>handleMoveSlide(-1)}></button>
             <button className={style.btn_next} onClick={()=>handleMoveSlide(1)}></button>
             <div className={style.slide} ref={slides}>
@@ -38,6 +39,7 @@ export function ConteinerSlide(){
                     return ( <MovieCard {...movie} key={movie.id}/> )
                 })}
             </div>
-        </div>
+        </div> : <Loading/>}
+        </>
     )
 }
