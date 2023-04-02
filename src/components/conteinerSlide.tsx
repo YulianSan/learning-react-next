@@ -21,13 +21,18 @@ export function ConteinerSlide(){
         getData();
     }, [getData]);
     
+    // d representa a direção, d = 1 é para direita e -1 para esquerda
     const handleMoveSlide = (d = 1)=>{
-        // d representa a direção, d = 1 é para direita e -1 para esquerda
+
         const child = slides.current?.firstChild as HTMLDivElement;
+
         // pegando o width para poder mover o slide
         const widthSlide = child.getBoundingClientRect().width;
 
-        slides.current?.scrollBy(d * widthSlide, 0)
+        // slidebyConteiner é usado para ver quantos slides estão sendo exibidos
+        const slideByConteiner = parseInt(getComputedStyle(slides.current as Element).getPropertyValue('--p'));
+        
+        slides.current?.scrollBy(d * widthSlide * slideByConteiner, 0)
     }
     return (
         <>

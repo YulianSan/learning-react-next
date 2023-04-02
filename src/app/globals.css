@@ -3,3 +3,8 @@
     padding: 0;
     
 }
+
+main{
+    max-width: 1600px;
+    margin: 0px auto;
+}
