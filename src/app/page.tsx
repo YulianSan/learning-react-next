@@ -10,7 +10,8 @@ export const metadata = {
 export default async function Home() {
   return (
     <>
-      <ConteinerSlide />
+      {/* @ts-expect-error Server Component */}
+      <ConteinerSlide/>
     </>
   )
 }

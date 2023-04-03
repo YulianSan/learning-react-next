@@ -1,4 +1,5 @@
 import './globals.css'
+import { poppins } from './fonts';
 
 export const metadata = {
   title: 'Titulo padrão',
@@ -12,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className={poppins.className}>
         <main>
           {children}
         </main>

@@ -10,12 +10,19 @@
 }
 
 .card:focus > img{
+    
+    --border: 2px;
+    outline: var(--border) solid white;
+    outline-offset: calc(var(--border) * -1);
+}
+
+.cardFocus > img{
     --border: 4px;
     outline: var(--border) solid white;
     outline-offset: calc(var(--border) * -1);
 }
 
-.card:focus::after{
+.cardFocus::after{
     content: "";
     display: block;
     width: 0;
