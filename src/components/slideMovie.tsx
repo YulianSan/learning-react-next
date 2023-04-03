@@ -42,7 +42,7 @@ export function SlideMovie({data}: {data: responseTopRated | null}){
                         })}
                     </div>
                 </div>
-                {movieFocus && <MovieDetails movieId={movieFocus.id}/>}
+                {movieFocus && <MovieDetails setMovieFocus={setMovieFocus} movieId={movieFocus.id}/>}
             </>: <Loading/>}
         </>
     )

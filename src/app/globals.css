@@ -11,6 +11,7 @@ main{
 body {
     background: #111212;
     color:white;
+    min-height: 101vh;
 }
 
 .bold{

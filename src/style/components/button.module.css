@@ -1,0 +1,19 @@
+.btnDefault{
+    position: relative;
+    cursor: pointer;
+}
+.btnDefault img{
+    object-fit: contain;
+    top: 50% !important;
+    transform: translateY(-50%);
+}
+
+.imgLeft{
+    left: 15px !important;
+    object-position: left;
+}
+
+.imgRight{
+    right: 15px !important;
+    object-position: right;
+}
