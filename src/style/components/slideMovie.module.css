@@ -57,6 +57,12 @@
     transform: translateY(-50%) rotate(180deg);
 }
 
+.descriptionDetails{
+    padding-block: 1rem;
+    font-size: .8rem;
+    color: #bbb;
+}
+
 @media screen and (max-width: 1400px){
     .slide{
         --p: 7;
