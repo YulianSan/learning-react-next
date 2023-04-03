@@ -1,4 +1,3 @@
-'use client';
 import { movieDetails } from '@/interfaces/details_movie';
 import Image from 'next/image';
 import { Dispatch, SetStateAction, useCallback, useEffect, useState } from 'react';
