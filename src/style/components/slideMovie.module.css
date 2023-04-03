@@ -32,7 +32,7 @@
     /* 2px pq o margin-inline conta como se fosse right e left */
     width: calc(100%/var(--p) - 2px);
     margin-inline: 1px;
-    aspect-ratio: 3/2;
+    aspect-ratio: 2/3;
 }
 
 .btn_prev, .btn_next{
@@ -85,4 +85,59 @@
     .slide{
         --p: 1;
     }
+}
+
+.movieConteinerDetails{
+    position: relative;
+    min-height: 500px;
+    padding-left: 2rem;
+    padding-block: 2rem;
+}
+
+.movieConteinerDetails::after{
+    content: "";
+    z-index: -1;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: linear-gradient(90deg, rgb(0, 0, 0) 10% ,rgba(0, 0, 0, 0.9) 40%, rgba(0, 0, 0, 0));
+}
+.imgDatails{
+    object-fit: cover;
+    object-position: center;
+    z-index: -2;
+}
+
+.movieDetails{
+    width: max(40%, 250px);
+}
+
+.movieConteinerDetails h2{
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.btnClose{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+.matchDetails{
+    color: green;
+    font-weight: bold;
+}
+
+.generos{
+    display: flex;
+    width: 100%;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.generos li{
+    list-style: none;
 }

@@ -12,3 +12,11 @@ body {
     background: #111212;
     color:white;
 }
+
+.bold{
+    font-weight: bold;
+}
+
+.imgCover{
+    object-fit: cover;
+}
