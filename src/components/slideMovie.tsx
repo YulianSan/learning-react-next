@@ -5,6 +5,8 @@ import style from '../style/components/slideMovie.module.css';
 import { MovieCard } from "./movieCard";
 import Loading from "../app/loading";
 import { movie } from "@/interfaces/movie_interface";
+import Image from "next/image";
+import { MovieDetails } from "./movieDetails";
 
 
 export function SlideMovie({data}: {data: responseTopRated | null}){
@@ -40,17 +42,7 @@ export function SlideMovie({data}: {data: responseTopRated | null}){
                         })}
                     </div>
                 </div>
-                {movieFocus && 
-                    <div>
-                        <button className={style.btnClose}></button>
-                        <div className={style.movieDetails}>
-                            <h2>{movieFocus.title}</h2>
-                            <span>{movieFocus.popularity}</span>
-                            <p>{movieFocus.overview}</p>
-                        </div>
-                        {JSON.stringify(movieFocus)}
-                    </div>
-                }
+                {movieFocus && <MovieDetails movieId={movieFocus.id}/>}
             </>: <Loading/>}
         </>
     )

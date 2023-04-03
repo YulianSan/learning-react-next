@@ -24,7 +24,7 @@ export function MovieCard(
             onClick={()=>{setMovieFocus(movie)}}
             onKeyDown={handleFocusClick}
         >
-            <Image src={process.env.IMG_URL + movie.backdrop_path} alt={movie.title} fill sizes="100%" priority={true}/>
+            <Image src={process.env.IMG_URL + movie.poster_path} alt={movie.title} fill sizes="100%" priority={true}/>
         </div>
     )
 }
