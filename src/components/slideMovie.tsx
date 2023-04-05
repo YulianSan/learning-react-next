@@ -8,41 +8,52 @@ import { movie } from "@/interfaces/movie_interface";
 import Image from "next/image";
 import { MovieDetails } from "./movieDetails";
 
+enum Direction {
+    right = 1,
+    left = -1
+};
+const handleMoveSlide = (slides: HTMLDivElement, direction: Direction = Direction.right)=>{
+    const slide = slides.firstChild as HTMLDivElement;
+    const slideWidth = slide.getBoundingClientRect().width;
+    const slideByConteiner = parseInt(getComputedStyle(slides).getPropertyValue('--p'));
+    
+    slides.scrollBy(direction * slideWidth * slideByConteiner, 0)
+}
 
 export function SlideMovie({data}: {data: responseTopRated | null}){
-    const [movieFocus, setMovieFocus] = useState<movie | null>();
+    const [movieFocus, setMovieFocus] = useState<movie>();
     const slides = useRef<HTMLDivElement>(null);
     
-    // d representa a direção, d = 1 é para direita e -1 para esquerda
-    const handleMoveSlide = (d = 1)=>{
-
-        const child = slides.current?.firstChild as HTMLDivElement;
-
-        // pegando o width para poder mover o slide
-        const widthSlide = child.getBoundingClientRect().width;
-
-        // slidebyConteiner é usado para ver quantos slides estão sendo exibidos
-        const slideByConteiner = parseInt(getComputedStyle(slides.current as Element).getPropertyValue('--p'));
-        
-        slides.current?.scrollBy(d * widthSlide * slideByConteiner, 0)
-    }
-
-    const handleMovieFocus = (value: movie)=> {
-        setMovieFocus(value);
-    }
     return (
         <>
-        { data?.results ? <>
+        { data?.results ? 
+            <>
                 <div className={style.conteinerSlide}>
-                    <button className={style.btn_prev} onClick={()=>handleMoveSlide(-1)}></button>
-                    <button className={style.btn_next} onClick={()=>handleMoveSlide(1)}></button>
+                    <button 
+                        className={style.btn_prev} 
+                        onClick={()=>handleMoveSlide(slides.current!, Direction.left)}>
+                    </button>
+                    
+                    <button 
+                        className={style.btn_next} 
+                        onClick={()=>handleMoveSlide(slides.current! , Direction.right)}>
+                    </button>
+
                     <div className={style.slide} ref={slides}>
                         {data?.results.map( movie =>{
-                            return ( <MovieCard movie={movie} key={movie.id} setMovieFocus={handleMovieFocus} isFocus={movieFocus?.id == movie.id}/> )
+                            return ( 
+                                <MovieCard 
+                                    movie={movie} 
+                                    key={movie.id} 
+                                    setMovieFocus={setMovieFocus!} 
+                                    isFocus={movieFocus?.id == movie.id} /> 
+                            )
                         })}
                     </div>
                 </div>
-                {movieFocus && <MovieDetails setMovieFocus={setMovieFocus} movieId={movieFocus.id}/>}
+                { movieFocus && 
+                    <MovieDetails setMovieFocus={setMovieFocus} movieId={movieFocus.id}/>
+                }
             </>: <Loading/>}
         </>
     )
