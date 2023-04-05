@@ -13,15 +13,10 @@ export function SlideMovie({data}: {data: responseTopRated | null}){
     const [movieFocus, setMovieFocus] = useState<movie | null>();
     const slides = useRef<HTMLDivElement>(null);
     
-    // d representa a direção, d = 1 é para direita e -1 para esquerda
     const handleMoveSlide = (d = 1)=>{
 
         const child = slides.current?.firstChild as HTMLDivElement;
-
-        // pegando o width para poder mover o slide
         const widthSlide = child.getBoundingClientRect().width;
-
-        // slidebyConteiner é usado para ver quantos slides estão sendo exibidos
         const slideByConteiner = parseInt(getComputedStyle(slides.current as Element).getPropertyValue('--p'));
         
         slides.current?.scrollBy(d * widthSlide * slideByConteiner, 0)
