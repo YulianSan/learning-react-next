@@ -1,18 +1,76 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useReducer, useState } from "react";
 
-export function useFetchInClientSize<T>(url: string){
-    const [data, setData] = useState<T>();
+type reducerDate<T> = {
+    data: T | null,
+    isLoading: boolean,
+    error: string | null
+}
+
+type reducerAction = {
+    type: 'success' | 'newRequest' | 'error',
+    payload?: any
+}
+
+function reducer<Data>(state: reducerDate<Data>, action: reducerAction){
+    
+    switch (action.type) {
+        case 'success':
+            return {
+                ...state,
+                data: action.payload as Data,
+                isLoading: false
+            };
+        break;
+
+        case 'error':
+            return {
+                ...state,
+                error: action.payload
+            };
+        break;
+
+        case 'newRequest':
+            return {
+                error: null,
+                data: null,
+                isLoading: true
+            };
+        break;
+    }
+}
+export function useFetchInClientSize<T>(url: string): reducerDate<T>{
+    const INITIAL_STATE: reducerDate<T> = {
+        data: null,
+        isLoading: false,
+        error: null
+    }
+
+    const [data, dispatch] = useReducer(reducer<T>, INITIAL_STATE);
+
     const handleGetData = useCallback(async () =>{
-        const response = await fetch(url);
-        const dataResponse = await response.json() as T;
+        dispatch({type: 'newRequest'});
+        try{
+            const response = await fetch(url);
+            const dataResponse = await response.json();
+            if(!response.ok){
+                if(dataResponse.status_message){
+                    throw new Error(dataResponse.status_message);
+                }else{
+                    throw new Error('Houve um erro no servidor');
+                }
+            }
 
-        setData(dataResponse);
+            dispatch({type: 'success', payload: dataResponse});
+
+        }catch(err){
+            dispatch({type: 'error', payload: err})
+        }
     }, [url]);
 
-    useEffect(()=>{handleGetData()}, [handleGetData]);
+    useEffect(()=>{
+        handleGetData()
+    }, [handleGetData]);
 
-    return {
-        data,
-        setData,
-    }
+    return data;
+    
 }

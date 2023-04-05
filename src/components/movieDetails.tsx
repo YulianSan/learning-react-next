@@ -8,16 +8,16 @@ import { useFetchInClientSize } from '@/hook/fetchInClientSize';
 
 interface propsMovieDetails {
     movieId: number,
-    setMovieFocus: Dispatch<SetStateAction<movie | null | undefined>>
+    setMovieFocus: Dispatch<SetStateAction<movie | undefined>>
 }
 
 const handleClickBtnClose = (setMovieFocus: propsMovieDetails['setMovieFocus']) => {
-    setMovieFocus(null);
+    setMovieFocus(undefined);
 }
 
 export function MovieDetails({ movieId, setMovieFocus }: propsMovieDetails) {
     const URL_FETCH= `${process.env.API_URL}/${movieId}?api_key=${process.env.TOKEN}`;
-    const { data: movie, setData: setMovie } = useFetchInClientSize<movieDetails>(URL_FETCH);
+    const { data: movie, isLoading, error } = useFetchInClientSize<movieDetails>(URL_FETCH);
 
     return (
         <>
@@ -46,6 +46,7 @@ export function MovieDetails({ movieId, setMovieFocus }: propsMovieDetails) {
                     <Image className={style.imgDatails} alt={`Thumbnail do filme ${movie.title}`} src={process.env.IMG_URL + movie.backdrop_path} fill sizes="100%" />
                 </>
                 }
+                {isLoading && 'loading Data'}
             </div>
         </>
     );

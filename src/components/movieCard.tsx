@@ -6,7 +6,7 @@ import { Dispatch, KeyboardEvent, SetStateAction } from "react";
 type PropsMovieCard = {
     movie: movie,
     isFocus: boolean,
-    setMovieFocus: (value: movie) => void
+    setMovieFocus: Dispatch<SetStateAction<movie | undefined>>
 }
 
 const handleFocusClick = (
