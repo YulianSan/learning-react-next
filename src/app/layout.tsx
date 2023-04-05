@@ -1,5 +1,7 @@
 import './globals.css'
 import { poppins } from './fonts';
+import { Suspense } from 'react';
+import Loading from './loading';
 
 export const metadata = {
   title: 'Titulo padrão',
@@ -15,7 +17,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={poppins.className}>
         <main>
-          {children}
+          <h1>Teste</h1>
+          <Suspense fallback={<Loading/>}>
+            {children}
+          </Suspense>
         </main>
       </body>
     </html>

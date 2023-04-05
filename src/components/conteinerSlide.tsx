@@ -2,14 +2,13 @@ import { responseTopRated } from "@/interfaces/top_rated_interface";
 import { SlideMovie } from "./slideMovie";
 
 
-export async function ConteinerSlide(){
+export async function ConteinerSlide() {
     const response = await fetch(`${process.env.API_URL}top_rated?api_key=${process.env.TOKEN}`);
     const data = await response.json() as responseTopRated;
 
-    console.log(`${process.env.API_URL}top_rated?api_key=${process.env.TOKEN}`)
     return (
         <>
-            <SlideMovie data={data}/>
+            <SlideMovie data={data} />
         </>
     )
 }
