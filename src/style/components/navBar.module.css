@@ -6,6 +6,8 @@
     top: 0;
     left: 0;
     z-index: 9999;
+    padding-top: 30px;
+    padding-inline: 5px;
     border-right: 3px solid white;
     box-sizing: border-box;
 }
