@@ -2,7 +2,7 @@ import './globals.css'
 import { poppins } from './fonts';
 import { Suspense } from 'react';
 import Loading from './loading';
-import NavBar from '@/components/navBar';
+import { NavBar } from '@/components/navBar';
 
 export const metadata = {
   title: 'Titulo padrão',
