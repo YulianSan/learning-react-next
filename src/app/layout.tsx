@@ -2,6 +2,7 @@ import './globals.css'
 import { poppins } from './fonts';
 import { Suspense } from 'react';
 import Loading from './loading';
+import NavBar from '@/components/navBar';
 
 export const metadata = {
   title: 'Titulo padrão',
@@ -16,11 +17,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
+        <NavBar />
         <main>
-          <h1>Teste</h1>
-          <Suspense fallback={<Loading/>}>
-            {children}
-          </Suspense>
+          <h1>Netflix com um título grande</h1>
+          {children}
         </main>
       </body>
     </html>

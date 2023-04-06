@@ -7,6 +7,10 @@
 main{
     max-width: 1600px;
     margin: 0px auto;
+    margin-left: 60px;
+    padding: 30px;
+
+
 }
 body {
     background: #111212;
