@@ -1,6 +1,7 @@
 .navItem{
     list-style: none;
-    margin-block: 20px;
+    margin-block: 15px;
+    border-radius: 5px;
 }
 
 .navItem > a{
@@ -8,10 +9,20 @@
     display: flex;
     color: white;
     overflow: hidden;
+    gap: 10px;
+    align-items: center;
 }
 
 .navItem img{
     width: 30px;
-    padding-inline: 5px;
+    padding: 5px;
     height: 30px;
+}
+
+.navItem span{
+    padding-right: 30px;
+    white-space: nowrap;
+}
+.navItemCurrent{
+    background-color: #0f0f0f;
 }
