@@ -9,7 +9,7 @@ const handleExpandMenu = (setExpand: Dispatch<SetStateAction<boolean>>)=>{
 }
 
 export function NavBar(){
-    const [expand, setExpand] = useState(true);
+    const [expand, setExpand] = useState(false);
 
     return(
         <nav className={`${style.navbar} ${expand && style.expand}`}>
