@@ -3,18 +3,39 @@
     height: 100%;
     background-color: #040404;
     position: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     top: 0;
     left: 0;
     z-index: 9999;
-    padding-top: 30px;
-    padding-inline: 15px;
+    padding: 30px 15px;
     box-sizing: border-box;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
+    transition: width .5s;
+}
+
+.navbar.expand{
+    width: 280px;
+}
+
+
+.expandNavBar{
+    filter: invert(100%);
+    margin-top: 30px;
+
+    width: 30px;
+    height: 30px;
+    padding-inline: 5px;
+    cursor: pointer;
+}
+.iconNavBar, .expandNavBar{
+    flex: none;
 }
 
 .iconNavBar{
-    flex: none;
     margin-bottom: 30px;
     width: 40px;
     height: 40px;
