@@ -1,0 +1,26 @@
+.line{
+    width: 100%;
+    margin-top: .5rem;
+    margin-right: .5rem;
+    background-color: #111212;
+}
+
+.tall{
+    height: 50px;
+}
+
+.low{
+    height: 12.5px;
+}
+
+.marginTop{
+    margin-top: 2rem;
+}
+
+.widthMedium{
+    width: 60%;
+}
+
+.medium{
+    height: 25px;
+}

@@ -1,17 +1,18 @@
 'use client'
+
 import { responseTopRated } from "@/interfaces/top_rated_interface";
-import { Suspense, useCallback, useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import style from '../style/components/slideMovie.module.css';
 import { MovieCard } from "./movieCard";
 import Loading from "../app/loading";
 import { movie } from "@/interfaces/movie_interface";
-import Image from "next/image";
 import { MovieDetails } from "./movieDetails";
 
 enum Direction {
     right = 1,
     left = -1
 };
+
 const handleMoveSlide = (slides: HTMLDivElement, direction: Direction = Direction.right)=>{
     const slide = slides.firstChild as HTMLDivElement;
     const slideWidth = slide.getBoundingClientRect().width;

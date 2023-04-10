@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useReducer, useState } from "react";
+import { useCallback, useEffect, useReducer, useRef } from "react";
 
 type reducerDate<T> = {
     data: T | null,
@@ -17,7 +17,7 @@ function reducer<Data>(state: reducerDate<Data>, action: reducerAction){
         case 'success':
             return {
                 ...state,
-                data: action.payload as Data,
+                data: action.payload,
                 isLoading: false
             };
         break;
@@ -45,12 +45,17 @@ export function useFetchInClientSize<T>(url: string): reducerDate<T>{
         error: null
     }
 
+    const abortController = useRef<AbortController | null>(null);
     const [data, dispatch] = useReducer(reducer<T>, INITIAL_STATE);
 
     const handleGetData = useCallback(async () =>{
         dispatch({type: 'newRequest'});
+        abortController.current = new AbortController();
+
         try{
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                signal: abortController.current.signal
+            });
             const dataResponse = await response.json();
             if(!response.ok){
                 if(dataResponse.status_message){
@@ -68,6 +73,10 @@ export function useFetchInClientSize<T>(url: string): reducerDate<T>{
     }, [url]);
 
     useEffect(()=>{
+        if(data.isLoading && abortController.current){
+            console.log('oi')
+            abortController.current?.abort();
+        }
         handleGetData()
     }, [handleGetData]);
 

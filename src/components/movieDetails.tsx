@@ -5,6 +5,7 @@ import style from '../style/components/slideMovie.module.css';
 import { Button } from './button';
 import { movie } from '@/interfaces/movie_interface';
 import { useFetchInClientSize } from '@/hook/fetchInClientSize';
+import { SkeletonMovieCard } from './movieDetails/skeleton';
 
 interface propsMovieDetails {
     movieId: number,
@@ -16,8 +17,12 @@ const handleClickBtnClose = (setMovieFocus: propsMovieDetails['setMovieFocus']) 
 }
 
 export function MovieDetails({ movieId, setMovieFocus }: propsMovieDetails) {
-    const URL_FETCH= `${process.env.API_URL}/${movieId}?api_key=${process.env.TOKEN}`;
-    const { data: movie, isLoading, error } = useFetchInClientSize<movieDetails>(URL_FETCH);
+    const URL_FETCH= 
+        `${process.env.API_URL}/${movieId}?api_key=${process.env.TOKEN}`;
+
+    const { data: movie, isLoading, error } = 
+        useFetchInClientSize<movieDetails>(URL_FETCH);
+
 
     return (
         <>
@@ -46,7 +51,7 @@ export function MovieDetails({ movieId, setMovieFocus }: propsMovieDetails) {
                     <Image className={style.imgDatails} alt={`Thumbnail do filme ${movie.title}`} src={process.env.IMG_URL + movie.backdrop_path} fill sizes="100%" />
                 </>
                 }
-                {isLoading && 'loading Data'}
+                {isLoading && <SkeletonMovieCard/>}
             </div>
         </>
     );
