@@ -12,7 +12,7 @@
     overflow-x: scroll;
     scroll-snap-type: x mandatory;
 
-    scrollbar-width: 0px;
+    scrollbar-width: none;
     box-sizing: border-box;
     scroll-padding-right: 40px;
     scroll-padding-left: 41px;
